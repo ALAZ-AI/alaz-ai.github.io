@@ -1,0 +1,18 @@
+---
+import { Image } from "astro:assets";
+---
+
+<header class="absolute top-0 left-0 right-0 z-50 py-4 md:py-6">
+    <div class="container mx-auto flex justify-between items-center">
+        <div class="flex items-center space-x-2 md:space-x-3">
+            <Image src="/logo-white.jpg" alt="ALAZ Logo" class="rounded-full" width={28} height={28} loading="eager" class="md:w-8 md:h-8" />
+            <div class="text-xl md:text-2xl font-black text-blue-400 font-mono tracking-wider">ALAZ</div>
+        </div>
+        <nav class="hidden md:flex space-x-8">
+            <a href="#features" class="text-gray-300 hover:text-white font-medium transition-colors">Features</a>
+            <a href="#how-it-works" class="text-gray-300 hover:text-white font-medium transition-colors">How It Works</a>
+            <a href="#pricing" class="text-gray-300 hover:text-white font-medium transition-colors">Pricing</a>
+        </nav>
+        <a href="#" class="btn-gradient text-white font-medium md:font-semibold py-2 px-4 md:px-6 text-sm md:text-base transition duration-300">Get Started</a>
+    </div>
+</header>

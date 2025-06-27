@@ -1,0 +1,18 @@
+---
+import { Image } from "astro:assets";
+---
+
+<section class="py-20 bg-gray-800">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold text-white">Control Your Network from a Single, Intuitive Dashboard.</h2>
+            <p class="text-lg text-gray-400">Our web-based control panel makes it easy to manage your settings, view analytics, and understand your network's activity.</p>
+        </div>
+        <div class="relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[14px]">
+            <div class="overflow-hidden w-full h-full bg-white dark:bg-gray-800">
+                <Image src="/dashboard.png" class="dark:hidden" alt="Dashboard Preview" width={1138} height={640} />
+                <Image src="/dashboard.png" class="hidden dark:block" alt="Dashboard Preview" width={1138} height={640} />
+            </div>
+        </div>
+    </div>
+</section>

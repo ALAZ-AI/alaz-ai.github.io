@@ -1,0 +1,37 @@
+<section class="section-padding-sm bg-gradient-to-b from-gray-800 to-gray-900 relative">
+    <!-- Background Elements -->
+    <div class="absolute inset-0">
+        <div class="absolute top-10 left-10 w-64 h-64 bg-blue-500/3 blur-3xl"></div>
+        <div class="absolute bottom-10 right-10 w-80 h-80 bg-purple-500/3 blur-3xl"></div>
+    </div>
+    
+    <div class="container mx-auto relative z-10 text-center fade-in-up">
+        <h2 class="text-3xl md:text-4xl font-black text-white mb-8">
+            The Internet is Noisy. <span class="text-gradient">ALAZ Makes it Safe and Quiet.</span>
+        </h2>
+        <p class="text-lg md:text-xl text-gray-300 max-w-5xl mx-auto leading-relaxed">
+            Today's networks are constantly exposed to a barrage of online threats and distractions. From 
+            <span class="text-red-400 font-medium">malware</span> and <span class="text-orange-400 font-medium">phishing sites</span> to 
+            intrusive ads and time-wasting social media, managing your digital environment is more challenging than ever. 
+            ALAZ provides a <span class="text-blue-400 font-medium">powerful yet simple solution</span> to take back control. 
+            By filtering your DNS traffic, we block threats before they can reach your devices and allow you to decide 
+            what content is acceptable on your network.
+        </p>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+    });
+</script>

@@ -1,0 +1,41 @@
+<section class="section-padding bg-gradient-to-r from-blue-600 to-blue-700 relative overflow-hidden">
+    <!-- Background Elements -->
+    <div class="absolute inset-0">
+        <div class="absolute top-10 left-10 w-96 h-96 bg-white/5 blur-3xl"></div>
+        <div class="absolute bottom-10 right-10 w-80 h-80 bg-cyan-400/10 blur-3xl"></div>
+    </div>
+    
+    <div class="container mx-auto text-center relative z-10 fade-in-up">
+        <h2 class="text-4xl md:text-5xl font-black text-white mb-6">
+            Ready to Take Control of <span class="text-cyan-300">Your Network?</span>
+        </h2>
+        <p class="text-lg md:text-xl text-blue-100 mb-12 max-w-3xl mx-auto leading-relaxed">
+            Get started with our free plan and experience a safer, faster, and cleaner internet today. 
+            No credit card required.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
+            <a href="#" class="bg-white text-blue-600 font-bold py-4 px-8 text-lg transition duration-300 hover:bg-blue-50 hover:transform hover:translateY(-1px)">
+                Sign Up Now
+            </a>
+            <a href="#how-it-works" class="border-2 border-white/30 text-white font-bold py-4 px-8 text-lg transition duration-300 hover:bg-white/10 hover:border-white/50">
+                Learn More
+            </a>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+    });
+</script>

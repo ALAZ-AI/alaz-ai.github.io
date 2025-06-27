@@ -1,0 +1,75 @@
+<section id="use-cases" class="section-padding bg-gradient-to-b from-gray-900 to-gray-800 relative overflow-hidden">
+    <!-- Background Elements -->
+    <div class="absolute inset-0">
+        <div class="absolute top-20 left-1/4 w-72 h-72 bg-cyan-500/3 blur-3xl"></div>
+        <div class="absolute bottom-20 right-1/4 w-96 h-96 bg-purple-500/3 blur-3xl"></div>
+    </div>
+    
+    <div class="container mx-auto relative z-10">
+        <div class="text-center mb-16 fade-in-up">
+            <h2 class="text-4xl md:text-5xl font-black text-white mb-6">
+                One Tool, <span class="text-gradient">Many Uses</span>
+            </h2>
+            <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                ALAZ is flexible enough to fit your specific needs, from family protection to enterprise security
+            </p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+            <!-- For Families -->
+            <div class="angular-card p-6 lg:p-8 card-hover text-center fade-in-up">
+                <div class="w-16 h-16 mx-auto mb-6 bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center neon-green">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl lg:text-2xl font-bold text-white mb-4">For Families</h3>
+                <p class="text-gray-300 leading-relaxed">
+                    Protect your children from inappropriate content, block ads and trackers, and create a safer digital environment for your family.
+                </p>
+            </div>
+            
+            <!-- For Businesses -->
+            <div class="angular-card p-6 lg:p-8 card-hover text-center fade-in-up" style="animation-delay: 0.2s;">
+                <div class="w-16 h-16 mx-auto mb-6 bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center neon-blue">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl lg:text-2xl font-bold text-white mb-4">For Businesses</h3>
+                <p class="text-gray-300 leading-relaxed">
+                    Enhance security by blocking malware and phishing, improve productivity by filtering distracting websites, and gain network insights.
+                </p>
+            </div>
+            
+            <!-- For Tech-Savvy Users -->
+            <div class="angular-card p-6 lg:p-8 card-hover text-center fade-in-up" style="animation-delay: 0.4s;">
+                <div class="w-16 h-16 mx-auto mb-6 bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center neon-purple">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl lg:text-2xl font-bold text-white mb-4">For Tech-Savvy Users</h3>
+                <p class="text-gray-300 leading-relaxed">
+                    Customize your DNS settings with advanced rules, use our API for integrations, and enjoy a faster, cleaner internet experience.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+    });
+</script>
