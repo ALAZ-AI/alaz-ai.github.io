@@ -1,3 +1,7 @@
+---
+import AnimatedCard from "./AnimatedCard.astro";
+---
+
 <section id="how-it-works" class="section-padding bg-gradient-to-b from-gray-800 to-gray-900 relative overflow-hidden">
     <!-- Background Effects -->
     <div class="absolute inset-0">
@@ -29,7 +33,7 @@
                         </div>
                         <h3 class="text-lg font-bold text-white mb-2">SENTRY</h3>
                         <p class="text-sm text-gray-400 mb-2">DNS Engine</p>
-                        <div class="text-xs text-cyan-400 font-mono">&lt;1ms response</div>
+                        <div class="text-xs text-cyan-400 font-mono">&lt;60ms response</div>
                     </div>
 
                     <!-- CODEX -->
@@ -41,7 +45,7 @@
                         </div>
                         <h3 class="text-lg font-bold text-white mb-2">CODEX</h3>
                         <p class="text-sm text-gray-400 mb-2">Data Layer</p>
-                        <div class="text-xs text-purple-400 font-mono">50M+ domains</div>
+                        <div class="text-xs text-purple-400 font-mono">5M+ domains</div>
                     </div>
 
                     <!-- ORACLE -->
@@ -53,7 +57,7 @@
                         </div>
                         <h3 class="text-lg font-bold text-white mb-2">ORACLE</h3>
                         <p class="text-sm text-gray-400 mb-2">AI Engine</p>
-                        <div class="text-xs text-green-400 font-mono">99.8% accuracy</div>
+                        <div class="text-xs text-green-400 font-mono">97.3% accuracy</div>
                     </div>
 
                     <!-- PANEL -->
@@ -151,51 +155,60 @@
             </div>
 
             <!-- Real-time Stats Dashboard -->
-            <div class="fade-in-up" style="animation-delay: 0.3s;">
-                <div class="angular-card p-6 lg:p-8">
-                    <h3 class="text-xl lg:text-2xl font-bold text-white mb-6 text-center">Live Network Protection</h3>
-                    
-                    <!-- Real-time counters -->
-                    <div class="grid grid-cols-2 gap-4 mb-8">
-                        <div class="bg-gradient-to-r from-green-500/10 to-emerald-500/10 p-4 text-center">
-                            <div class="text-xl lg:text-2xl font-black text-green-400 mb-1 counter" data-target="1847">0</div>
-                            <div class="text-sm text-gray-400">Requests Today</div>
+            <div class="fade-in-up w-full [perspective:1000px]" style="animation-delay: 0.3s;">
+                <AnimatedCard 
+                    contentType="custom"
+                    borderColor="#00ff88"
+                    backgroundColor="#1a1a1a"
+                    borderRadius="12px"
+                    borderWidth={2}
+                    animationDuration="3s"
+                >
+                    <div class="p-6 lg:p-8 bg-gray-900/80">
+                        <h3 class="text-xl lg:text-2xl font-bold text-white mb-6 text-center">Live Network Protection</h3>
+                        
+                        <!-- Real-time counters -->
+                        <div class="grid grid-cols-2 gap-4 mb-8">
+                            <div class="bg-gradient-to-r from-green-500/10 to-emerald-500/10 p-4 rounded-lg text-center">
+                                <div class="text-xl lg:text-2xl font-black text-green-400 mb-1 counter" data-target="1847">0</div>
+                                <div class="text-sm text-gray-400">Requests Today</div>
+                            </div>
+                            <div class="bg-gradient-to-r from-red-500/10 to-orange-500/10 p-4 rounded-lg text-center">
+                                <div class="text-xl lg:text-2xl font-black text-red-400 mb-1 counter" data-target="23">0</div>
+                                <div class="text-sm text-gray-400">Threats Blocked</div>
+                            </div>
                         </div>
-                        <div class="bg-gradient-to-r from-red-500/10 to-orange-500/10 p-4 text-center">
-                            <div class="text-xl lg:text-2xl font-black text-red-400 mb-1 counter" data-target="23">0</div>
-                            <div class="text-sm text-gray-400">Threats Blocked</div>
-                        </div>
-                    </div>
 
-                    <!-- Activity Feed -->
-                    <div class="space-y-3">
-                        <div class="text-sm font-semibold text-white mb-4">Recent Activity</div>
-                        <div class="activity-item flex items-center space-x-3 p-3 bg-green-500/10">
-                            <div class="status-indicator mr-2"></div>
-                            <div class="flex-1">
-                                <div class="text-sm text-white">google.com</div>
-                                <div class="text-xs text-gray-400">Allowed • 0.8ms</div>
+                        <!-- Activity Feed -->
+                        <div class="space-y-3">
+                            <div class="text-sm font-semibold text-white mb-4">Recent Activity</div>
+                            <div class="activity-item flex items-center space-x-3 p-3 bg-green-500/10 rounded">
+                                <div class="status-indicator mr-2"></div>
+                                <div class="flex-1">
+                                    <div class="text-sm text-white">google.com</div>
+                                    <div class="text-xs text-gray-400">Allowed • 0.8ms</div>
+                                </div>
+                                <div class="text-xs text-green-400">✓</div>
                             </div>
-                            <div class="text-xs text-green-400">✓</div>
-                        </div>
-                        <div class="activity-item flex items-center space-x-3 p-3 bg-red-500/10">
-                            <div class="status-indicator error mr-2"></div>
-                            <div class="flex-1">
-                                <div class="text-sm text-white">malware-site.evil</div>
-                                <div class="text-xs text-gray-400">Blocked • 0.3ms</div>
+                            <div class="activity-item flex items-center space-x-3 p-3 bg-red-500/10 rounded">
+                                <div class="status-indicator error mr-2"></div>
+                                <div class="flex-1">
+                                    <div class="text-sm text-white">malware-site.evil</div>
+                                    <div class="text-xs text-gray-400">Blocked • 0.3ms</div>
+                                </div>
+                                <div class="text-xs text-red-400">✗</div>
                             </div>
-                            <div class="text-xs text-red-400">✗</div>
-                        </div>
-                        <div class="activity-item flex items-center space-x-3 p-3 bg-blue-500/10">
-                            <div class="status-indicator info mr-2"></div>
-                            <div class="flex-1">
-                                <div class="text-sm text-white">unknown-domain.com</div>
-                                <div class="text-xs text-gray-400">Analyzing • AI Queue</div>
+                            <div class="activity-item flex items-center space-x-3 p-3 bg-blue-500/10 rounded">
+                                <div class="status-indicator info mr-2"></div>
+                                <div class="flex-1">
+                                    <div class="text-sm text-white">unknown-domain.com</div>
+                                    <div class="text-xs text-gray-400">Analyzing • AI Queue</div>
+                                </div>
+                                <div class="text-xs text-blue-400">?</div>
                             </div>
-                            <div class="text-xs text-blue-400">?</div>
                         </div>
                     </div>
-                </div>
+                </AnimatedCard>
             </div>
         </div>
     </div>

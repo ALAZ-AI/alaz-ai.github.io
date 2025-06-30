@@ -1,15 +1,12 @@
-<section class="relative min-h-screen flex items-center justify-center animated-bg overflow-hidden">
-    <!-- Animated Particles Background -->
-    <div class="particles" id="particles"></div>
-    
-    <!-- Gradient Overlay -->
-    <div class="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-purple-900/10 to-gray-900/20"></div>
-    
-    <!-- Grid Pattern -->
-    <div class="absolute inset-0 bg-grid-pattern opacity-3"></div>
+---
+import Sphere from "./Sphere.astro";
+---
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+
+    <Sphere />
     
     <!-- Content -->
-    <div class="relative z-10 text-center px-6 max-w-6xl mx-auto pt-20 md:pt-0">
+    <div class="relative z-10 text-center px-6 max-w-6xl mx-auto pt-20 md:pt-15">
         <!-- Logo/Brand -->
         <div class="mb-12 fade-in-up">
             <div class="inline-block text-5xl md:text-6xl font-black text-gradient mb-6">ALAZ</div>
@@ -34,15 +31,15 @@
         <!-- Statistics Cards -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-16 fade-in-up">
             <div class="angular-card p-4 md:p-6 neon-blue">
-                <div class="text-2xl md:text-3xl font-black text-blue-400 mb-2">99.9%</div>
+                <div class="text-2xl md:text-3xl font-black text-blue-400 mb-2">99.7%</div>
                 <div class="text-xs md:text-sm text-gray-400 font-medium">Uptime</div>
             </div>
             <div class="angular-card p-4 md:p-6 neon-purple">
-                <div class="text-2xl md:text-3xl font-black text-purple-400 mb-2">&lt;1ms</div>
+                <div class="text-2xl md:text-3xl font-black text-purple-400 mb-2">&lt;60ms</div>
                 <div class="text-xs md:text-sm text-gray-400 font-medium">Response</div>
             </div>
             <div class="angular-card p-4 md:p-6 neon-green">
-                <div class="text-2xl md:text-3xl font-black text-green-400 mb-2">50M+</div>
+                <div class="text-2xl md:text-3xl font-black text-green-400 mb-2">5M+</div>
                 <div class="text-xs md:text-sm text-gray-400 font-medium">Threats Blocked</div>
             </div>
             <div class="angular-card p-4 md:p-6 neon-blue">
@@ -69,80 +66,4 @@
 
     </div>
     
-    <!-- Subtle Background Elements -->
-    <div class="absolute top-20 left-10 w-32 h-32 bg-blue-500/5 blur-3xl animate-pulse"></div>
-    <div class="absolute top-40 right-20 w-48 h-48 bg-purple-500/5 blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
-    <div class="absolute bottom-40 left-20 w-40 h-40 bg-green-500/5 blur-3xl animate-pulse" style="animation-delay: 4s;"></div>
 </section>
-
-<script>
-    // Create floating particles
-    function createParticles() {
-        const particlesContainer = document.getElementById('particles');
-        if (!particlesContainer) return;
-        
-        for (let i = 0; i < 30; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 8 + 's';
-            particle.style.animationDuration = (Math.random() * 6 + 8) + 's';
-            particlesContainer.appendChild(particle);
-        }
-    }
-    
-    // Intersection Observer for fade animations
-    function setupAnimations() {
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('in-view');
-                }
-            });
-        }, observerOptions);
-        
-        document.querySelectorAll('.fade-in-up').forEach(el => {
-            observer.observe(el);
-        });
-    }
-    
-    // Initialize on load
-    document.addEventListener('DOMContentLoaded', () => {
-        createParticles();
-        setupAnimations();
-    });
-</script>
-
-<style>
-    .bg-grid-pattern {
-        background-image: 
-            linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px), 
-            linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-        background-size: 4rem 4rem;
-    }
-    
-    .fade-in-up {
-        transition-delay: 0.2s;
-    }
-    
-    .fade-in-up:nth-child(2) {
-        transition-delay: 0.4s;
-    }
-    
-    .fade-in-up:nth-child(3) {
-        transition-delay: 0.6s;
-    }
-    
-    .fade-in-up:nth-child(4) {
-        transition-delay: 0.8s;
-    }
-    
-    .fade-in-up:nth-child(5) {
-        transition-delay: 1s;
-    }
-</style>

@@ -1,0 +1,191 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+    imageSrc?: string;
+    imageAlt?: string;
+    imageWidth?: number;
+    imageHeight?: number;
+    borderColor?: string;
+    backgroundColor?: string;
+    borderRadius?: string;
+    borderWidth?: number;
+    animationDuration?: string;
+    glowBlur?: string;
+    hoverScale?: number;
+    rotationIntensity?: number;
+    className?: string;
+    contentType?: 'image' | 'custom';
+}
+
+const props = Astro.props as Props;
+const cardId = `animated-card-${Math.random().toString(36).substr(2, 9)}`;
+const isImageMode = props.contentType !== 'custom' && props.imageSrc;
+---
+
+<div 
+    id={cardId}
+    class={`w-full h-full animated-card-container relative transition-transform duration-300 ease-out cursor-pointer ${props.className || ""}`}
+    data-rotation-intensity={props.rotationIntensity || 15}
+    style={`--hover-scale: ${props.hoverScale || 1.05}`}
+>
+    <!-- Animated border background -->
+    <div 
+        class="animated-border-box" 
+        style={`
+            --border-color: ${props.borderColor || "#1976ed"}; 
+            --bg-color: ${props.backgroundColor || "#292a2e"}; 
+            --border-radius: ${props.borderRadius || "10px"}; 
+            --border-width: ${props.borderWidth || 5}px; 
+            --animation-duration: ${props.animationDuration || "4s"}
+        `}
+    ></div>
+    <div 
+        class="animated-border-box-glow" 
+        style={`
+            --border-color: ${props.borderColor || "#1976ed"}; 
+            --border-radius: ${props.borderRadius || "10px"}; 
+            --glow-blur: ${props.glowBlur || "20px"}; 
+            --animation-duration: ${props.animationDuration || "4s"}
+        `}
+    ></div>
+    
+    <!-- Card content -->
+    <div 
+        class="card-content relative z-10 overflow-hidden" 
+        style={`
+            margin: ${props.borderWidth || 5}px; 
+            border-radius: calc(${props.borderRadius || "10px"} - 3px)
+        `}
+    >
+        {isImageMode ? (
+            <Image 
+                src={props.imageSrc!} 
+                class="w-full h-auto" 
+                alt={props.imageAlt || ""} 
+                width={props.imageWidth || 800} 
+                height={props.imageHeight || 600} 
+            />
+        ) : (
+            <slot />
+        )}
+    </div>
+</div>
+
+<style>
+    .animated-card-container {
+        display: inline-block;
+        perspective: 1000px;
+    }
+
+    .animated-card-container:hover {
+        transform: rotateX(var(--x-rotation, 0deg)) rotateY(var(--y-rotation, 0deg)) scale(var(--hover-scale, 1.05));
+    }
+
+    /*// Glow Border Animation //*/
+    .animated-border-box, .animated-border-box-glow {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: hidden; 
+        z-index: 0;
+        border-radius: var(--border-radius, 10px);
+    }
+
+    .animated-border-box-glow {
+        overflow: hidden;
+        /* Glow Blur */
+        filter: blur(var(--glow-blur, 20px));
+    }
+
+    .animated-border-box:before, .animated-border-box-glow:before {
+        content: '';
+        z-index: -2;
+        text-align: center;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(0deg);
+        position: absolute;
+        width: 99999px;
+        height: 99999px;
+        background-repeat: no-repeat;
+        background-position: 0 0;
+        /*border color, change middle color*/
+        background-image: conic-gradient(rgba(0,0,0,0), var(--border-color, #1976ed), rgba(0,0,0,0) 25%);
+        /* change speed here */
+        animation: rotate var(--animation-duration, 4s) linear infinite;
+    }
+
+    .animated-border-box:after {
+        content: '';
+        position: absolute;
+        z-index: -1;
+        /* border width */
+        left: var(--border-width, 5px);
+        top: var(--border-width, 5px);
+        /* double the px from the border width left */
+        width: calc(100% - calc(var(--border-width, 5px) * 2));
+        height: calc(100% - calc(var(--border-width, 5px) * 2));
+        /*bg color*/
+        background: var(--bg-color, #292a2e);
+        /*box border radius*/
+        border-radius: calc(var(--border-radius, 10px) - 3px);
+    }
+
+    @keyframes rotate {
+        100% {
+            transform: translate(-50%, -50%) rotate(1turn);
+        }
+    }
+
+    /*// Border Animation END//*/
+
+    .card-content {
+        position: relative;
+        z-index: 10;
+        overflow: hidden;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const cards = document.querySelectorAll('.animated-card-container');
+        
+        cards.forEach(card => {
+            const rotationIntensity = parseInt(card.getAttribute('data-rotation-intensity') || '15');
+            let boundingRect = null;
+
+            const handleMouseEnter = (ev) => {
+                boundingRect = ev.currentTarget.getBoundingClientRect();
+            };
+
+            const handleMouseLeave = () => {
+                boundingRect = null;
+                card.style.setProperty('--x-rotation', '0deg');
+                card.style.setProperty('--y-rotation', '0deg');
+            };
+
+            const handleMouseMove = (ev) => {
+                if (!boundingRect) return;
+
+                const x = ev.clientX - boundingRect.left;
+                const y = ev.clientY - boundingRect.top;
+                const xPercentage = x / boundingRect.width;
+                const yPercentage = y / boundingRect.height;
+                
+                // Calculate rotation values
+                const xRotation = (xPercentage - 0.5) * rotationIntensity;
+                const yRotation = (0.5 - yPercentage) * rotationIntensity;
+
+                card.style.setProperty('--x-rotation', `${yRotation}deg`);
+                card.style.setProperty('--y-rotation', `${xRotation}deg`);
+            };
+
+            card.addEventListener('mouseenter', handleMouseEnter);
+            card.addEventListener('mouseleave', handleMouseLeave);
+            card.addEventListener('mousemove', handleMouseMove);
+        });
+    });
+</script> 
